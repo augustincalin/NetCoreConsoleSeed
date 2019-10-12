@@ -6,6 +6,6 @@ namespace ConsoleSeedApp
 {
     public interface ISomeService
     {
-        void DoSomething();
+        void DoSomething(string value);
     }
 }

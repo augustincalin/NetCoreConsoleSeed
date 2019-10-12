@@ -7,9 +7,9 @@ namespace ConsoleSeedApp
 {
     public class SomeService : ISomeService
     {
-        public void DoSomething()
+        public void DoSomething(string value)
         {
-            Debug.WriteLine("Do something...");
+            Debug.WriteLine($"Do something from {value}.");
         }
     }
 }
