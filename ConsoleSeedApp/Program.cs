@@ -2,6 +2,7 @@
 using System.IO;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace ConsoleSeedApp
 {
@@ -19,6 +20,12 @@ namespace ConsoleSeedApp
             IServiceCollection services = new ServiceCollection();
 
             IConfiguration config = LoadConfiguration();
+
+            services.AddLogging(logging =>
+            {
+                logging.AddConfiguration(config.GetSection("Logging"));
+                logging.AddConsole();
+            }).Configure<LoggerFilterOptions>(options => options.MinLevel = LogLevel.Information);
 
             services.AddSingleton(config);
 
