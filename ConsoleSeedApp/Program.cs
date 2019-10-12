@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using ConsoleSeedApp.Data;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -30,6 +32,8 @@ namespace ConsoleSeedApp
             services.AddSingleton(config);
 
             services.AddTransient<ISomeService, SomeService>();
+
+            services.AddDbContext<SomeDbContext>(options => options.UseSqlServer(config.GetConnectionString("Default")));
 
             services.AddTransient<ConsoleApplication>();
 
